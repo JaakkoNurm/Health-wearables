@@ -1,0 +1,16 @@
+Output/Release/Obj/template_pca10040/ecdsa.o: \
+ /Users/jaakkonurminen/Documents/SEGGER\ Embedded\ Studio\ for\ ARM\ Projects/nRF5_SDK_15.3.0_59ac345/external/mbedtls/library/ecdsa.c \
+ ../../../../../../external/nrf_tls/mbedtls/nrf_crypto/config/nrf_crypto_mbedtls_config.h \
+ ../config/sdk_config.h \
+ ../../../../../../external/mbedtls/include/mbedtls/check_config.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.30/include/limits.h \
+ ../../../../../../external/mbedtls/include/mbedtls/ecdsa.h \
+ ../../../../../../external/mbedtls/include/mbedtls/ecp.h \
+ ../../../../../../external/mbedtls/include/mbedtls/bignum.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.30/include/stddef.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.30/include/__crossworks.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.30/include/stdint.h \
+ ../../../../../../external/mbedtls/include/mbedtls/md.h \
+ ../../../../../../external/mbedtls/include/mbedtls/asn1write.h \
+ ../../../../../../external/mbedtls/include/mbedtls/asn1.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.30/include/string.h
