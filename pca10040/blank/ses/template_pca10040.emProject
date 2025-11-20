@@ -195,6 +195,7 @@
       <file file_name="../../../main.c" />
       <file file_name="../../../../../../components/drivers_ext/lsm6dso_platform/lsm6dso_platform.c" />
       <configuration Name="Release" c_user_include_directories="." />
+      <file file_name="../../../../../../components/drivers_ext/lsm6dso-pid-master/lsm6dso_reg.c" />
     </folder>
     <folder Name="nRF_micro-ecc">
       <file file_name="../../../../../../external/micro-ecc/nrf52hf_armgcc/armgcc/micro_ecc_lib_nrf52.a">
@@ -295,9 +296,6 @@
     <configuration
       Name="Release"
       c_user_include_directories="/Users/jaakkonurminen/Documents/SEGGER Embedded Studio for ARM Projects/nRF5_SDK_15.3.0_59ac345/components/drivers_ext/lsm6dso_platform;/Users/jaakkonurminen/Documents/SEGGER Embedded Studio for ARM Projects/nRF5_SDK_15.3.0_59ac345/components/drivers_ext/lsm6dso-pid-master" />
-    <folder Name="lsm_driver">
-      <file file_name="../../../../../../components/drivers_ext/lsm6dso-pid-master/lsm6dso_reg.c" />
-    </folder>
   </project>
   <configuration
     Name="Release"

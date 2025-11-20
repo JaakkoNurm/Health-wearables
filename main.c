@@ -100,12 +100,14 @@ uint32_t config_gpio()
 #define TWI_INSTANCE_ID 0
 
 const nrfx_twi_t m_twi = NRFX_TWI_INSTANCE(TWI_INSTANCE_ID);
+
 void twi_init(void)
 {
   nrfx_twi_config_t twi_config = NRFX_TWI_DEFAULT_CONFIG;
   twi_config.scl = 27; // Arduino pins
   twi_config.sda = 26;
   twi_config.frequency = NRF_TWI_FREQ_400K;
+
   nrfx_twi_init(&m_twi, &twi_config, twi_handler, NULL);
   nrfx_twi_enable(&m_twi);
 }
@@ -126,7 +128,6 @@ void lsm6dso_setup(void)
   // Sensor id check
   uint8_t whoamI = 0;
   lsm6dso_device_id_get(&dev_ctx, &whoamI);
-  printf("get device succeeds\n");
   if (whoamI != LSM6DSO_ID) {
     printf("Error: sensor not detected\n");
     while(1);
