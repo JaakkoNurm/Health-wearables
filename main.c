@@ -1,50 +1,6 @@
-/**
- * Copyright (c) 2009 - 2019, Nordic Semiconductor ASA
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form, except as embedded into a Nordic
- *    Semiconductor ASA integrated circuit in a product or a software update for
- *    such product, must reproduce the above copyright notice, this list of
- *    conditions and the following disclaimer in the documentation and/or other
- *    materials provided with the distribution.
- *
- * 3. Neither the name of Nordic Semiconductor ASA nor the names of its
- *    contributors may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- *
- * 4. This software, with or without modification, must only be used with a
- *    Nordic Semiconductor ASA integrated circuit.
- *
- * 5. Any software provided in binary form under this license must not be reverse
- *    engineered, decompiled, modified and/or disassembled.
- *
- * THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- */
-/** @file
-* @brief Example template project.
-* @defgroup nrf_templates_example Example Template
-*
-*/
-
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "nrf.h"
 #include "nordic_common.h"
@@ -55,7 +11,13 @@
 #include "nrf_drv_gpiote.h"
 #include "nrf_temp.h"
 
+// Exercise 2
+#include "nrfx_twi.h"
+#include "lsm6dso_reg.h"
+#include "lsm6dso_platform.h"
+
 const nrf_drv_timer_t TIMER_TEMP = NRF_DRV_TIMER_INSTANCE(0);
+
 
 /**
  * @brief Function for application main entry.
@@ -135,11 +97,52 @@ uint32_t config_gpio()
   return err_code;
 }
 
+#define TWI_INSTANCE_ID 0
+
+const nrfx_twi_t m_twi = NRFX_TWI_INSTANCE(TWI_INSTANCE_ID);
+void twi_init(void)
+{
+  nrfx_twi_config_t twi_config = NRFX_TWI_DEFAULT_CONFIG;
+  twi_config.scl = 27; // Arduino pins
+  twi_config.sda = 26;
+  twi_config.frequency = NRF_TWI_FREQ_400K;
+  nrfx_twi_init(&m_twi, &twi_config, twi_handler, NULL);
+  nrfx_twi_enable(&m_twi);
+}
+
+/**
+* Function for configuring the sensor
+*/
+stmdev_ctx_t dev_ctx;
+
+
+void lsm6dso_setup(void)
+{
+  dev_ctx.write_reg = platform_write;
+  dev_ctx.read_reg = platform_read;
+  dev_ctx.mdelay = platform_delay_ms;
+  dev_ctx.handle = (void*)&m_twi; // pass TWI instance handle
+
+  // Sensor id check
+  uint8_t whoamI = 0;
+  lsm6dso_device_id_get(&dev_ctx, &whoamI);
+  printf("get device succeeds\n");
+  if (whoamI != LSM6DSO_ID) {
+    printf("Error: sensor not detected\n");
+    while(1);
+  }
+  printf("Sensor ID: %#02x\n", whoamI);
+}
+
 
 int main(void)
 {
     config_gpio();
     init_timers();
+    twi_init();
+    lsm6dso_setup();
+    
+    
     while (true)
     {
         // do nothing

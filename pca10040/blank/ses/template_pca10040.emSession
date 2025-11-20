@@ -24,6 +24,7 @@
   <ProjectSessionItem path="exercise_1"/>
   <ProjectSessionItem path="exercise_1;template_pca10040"/>
   <ProjectSessionItem path="exercise_1;template_pca10040;Application"/>
+  <ProjectSessionItem path="exercise_1;template_pca10040;lsm_driver"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="TEMP/TASKS_START;TEMP/TASKS_STOP;TEMP/EVENTS_DATARDY;TEMP/INTENSET;TEMP/INTENCLR;TEMP/TEMP;TEMP/A0;TEMP/A1;TEMP/A2;TEMP/A3;TEMP/A4;TEMP/A5;TEMP/B0;TEMP/B1;TEMP/B2;TEMP/B3;TEMP/B4;TEMP/B5;TEMP/T0;TEMP/T1;TEMP/T2;TEMP/T3;TEMP/T4" binaryNodes="" asciiNodes="" openNodes="TEMP;TEMP/TEMP" name="template_pca10040" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -44,7 +45,9 @@
   <Trace enabled="Yes"/>
  </TraceWindow>
  <Watch1>
-  <Watches active="1" update="Never"/>
+  <Watches active="1" update="Twice a Second">
+   <Watchpoint expression="temp" name="temp" radix="-1" linenumber="28" filename="../../../main.c"/>
+  </Watches>
  </Watch1>
  <Watch2>
   <Watches active="0" update="Never"/>
@@ -56,8 +59,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="3" y="131" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="109" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="114" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="100" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="122" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="51" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../components/drivers_ext/lsm6dso_platform/lsm6dso_platform.c" selected="0" top="19" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="14" y="1967" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../components/drivers_ext/lsm6dso-pid-master/lsm6dso_reg.c" selected="0" top="1947" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="template_pca10040" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="template_pca10040" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="/Users/jaakkonurminen/Documents/SEGGER Embedded Studio for ARM Projects/nRF5_SDK_15.3.0_59ac345/components/drivers_ext/lsm6dso_platform" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
